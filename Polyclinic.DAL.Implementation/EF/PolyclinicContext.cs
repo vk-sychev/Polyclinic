@@ -26,14 +26,10 @@ namespace Polyclinic.DAL.Implementation.EF
 
         public DbSet<Diagnosis> Diagnoses { get; set; }
 
+        public DbSet<Visit> Visits { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-/*            modelBuilder.Entity<Patient>()
-                .Property<int>("UserId");
-
-            modelBuilder.Entity<Patient>()
-                .HasOne(x => x.User)
-                .Has*/
 
             modelBuilder.Entity<Visit>()
                 .Property(x => x.Complaint)
@@ -47,19 +43,9 @@ namespace Polyclinic.DAL.Implementation.EF
                 .Property(x => x.Description)
                 .IsRequired(false);
 
-/*            modelBuilder.Entity<CabinetInfo>()
-                .Property(x => x.DateEnd)
-                .IsRequired(false);*/
-
             base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();
-/*            modelBuilder.Entity<CabinetInfo>()
-                .HasOne(x => x.Cabinet)
-                .WithMany(x => x.CabinetInfos);
 
-            modelBuilder.Entity<CabinetInfo>()
-                .HasOne(x => x.Doctor)
-                .WithMany(x => x.CabinetInfos);*/
         }
     }
 }

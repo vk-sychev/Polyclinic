@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Polyclinic.BLL.Entities\Polyclinic.BLL.Entities.csproj" />
+    <ProjectReference Include="..\Polyclinic.BLL.Interfaces\Polyclinic.BLL.Interfaces.csproj" />
+    <ProjectReference Include="..\Polyclinic.DAL.Interfaces\Polyclinic.DAL.Interfaces.csproj" />
+    <ProjectReference Include="..\Polyclinic.Infrastructure\Polyclinic.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
