@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Polyclinic.DAL.Implementation.EF;
+using Polyclinic.DAL.Implementation.Repositories;
+using Polyclinic.DAL.Interfaces;
+using Polyclinic.Web.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,10 @@ namespace Polyclinic
         {
             services.AddDbContext<PolyclinicContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PolyclinicConnection")));
+            services.AddAutoMapper(typeof(MappingProfile));
+
+            services.AddTransient<IDoctorRepository, DoctorRepositry>();
+
             services.AddControllersWithViews();
         }
 

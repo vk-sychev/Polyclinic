@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Polyclinic.DAL.Entities\Polyclinic.DAL.Entities.csproj" />
+    <ProjectReference Include="..\Polyclinic.DAL.Interfaces\Polyclinic.DAL.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
