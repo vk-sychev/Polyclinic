@@ -1,0 +1,54 @@
+﻿@model Polyclinic.Web.Models.VisitViewModel
+
+@{
+    ViewData["Title"] = "DetailsVisit";
+}
+
+<div class="d-flex justify-content-between">
+    <h1>Visit's Details</h1>
+    <div class="d-flex justify-content-between mt-2">
+        <div>
+            <a asp-action="EditVisit" class="btn btn-primary" asp-route-id="@Model.VisitId">Edit Visit</a>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-secondary ml-5">Back to List</a>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h4>VisitViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Patient.PatientFullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Patient.PatientFullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Doctor.DoctorFullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Doctor.DoctorFullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateVisit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateVisit)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Complaint)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Complaint)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>

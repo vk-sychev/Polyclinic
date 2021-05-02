@@ -414,7 +414,7 @@ namespace Polyclinic.DAL.Implementation.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Visit");
+                    b.ToTable("Visits");
 
                     b.HasData(
                         new

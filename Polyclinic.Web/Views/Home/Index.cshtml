@@ -4,11 +4,13 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between mb-2">
+    <h1>All Visits</h1>
+    <div class="mt-2">
+        <a asp-action="CreateVisit" asp-controller="Home" class="btn btn-primary">Create New Visit</a>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -50,9 +52,11 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <div class="d-flex justify-content-end px-3">
+                        @Html.ActionLink("Edit", "EditVisit", new { id = item.VisitId }, new { @class = "btn btn-outline-primary btn-sm" }) 
+                        @Html.ActionLink("Details", "DetailsVisit", new { id = item.VisitId }, new { @class = "btn btn-outline-secondary btn-sm ml-3" }) 
+                        @Html.ActionLink("Delete", "DeleteVisit", new { id = item.VisitId }, new { @class = "btn btn-outline-danger btn-sm ml-3" })
+                    </div>
                 </td>
             </tr>
         }

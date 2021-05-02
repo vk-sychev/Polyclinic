@@ -85,7 +85,7 @@ namespace Polyclinic.DAL.Implementation.Migrations
                         column: x => x.SpecialtyId,
                         principalTable: "Specialties",
                         principalColumn: "SpecialtyId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Doctors_Users_UserId",
                         column: x => x.UserId,
@@ -133,13 +133,13 @@ namespace Polyclinic.DAL.Implementation.Migrations
                         column: x => x.CabinetId,
                         principalTable: "Cabinets",
                         principalColumn: "CabinetId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_CabinetInfos_Doctors_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "DoctorId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,17 +159,17 @@ namespace Polyclinic.DAL.Implementation.Migrations
                         column: x => x.DiagnosisId,
                         principalTable: "Diagnoses",
                         principalColumn: "DiagnosisId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_DiagnosisInfos_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "PatientId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Visit",
+                name: "Visits",
                 columns: table => new
                 {
                     VisitId = table.Column<int>(type: "integer", nullable: false)
@@ -182,19 +182,19 @@ namespace Polyclinic.DAL.Implementation.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Visit", x => x.VisitId);
+                    table.PrimaryKey("PK_Visits", x => x.VisitId);
                     table.ForeignKey(
-                        name: "FK_Visit_Doctors_DoctorId",
+                        name: "FK_Visits_Doctors_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "DoctorId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_Visit_Patients_PatientId",
+                        name: "FK_Visits_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "PatientId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.InsertData(
@@ -280,7 +280,7 @@ namespace Polyclinic.DAL.Implementation.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Visit",
+                table: "Visits",
                 columns: new[] { "VisitId", "Complaint", "DateVisit", "DoctorId", "PatientId", "Price" },
                 values: new object[,]
                 {
@@ -326,12 +326,12 @@ namespace Polyclinic.DAL.Implementation.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Visit_DoctorId",
-                table: "Visit",
+                table: "Visits",
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Visit_PatientId",
-                table: "Visit",
+                table: "Visits",
                 column: "PatientId");
         }
 
@@ -344,7 +344,7 @@ namespace Polyclinic.DAL.Implementation.Migrations
                 name: "DiagnosisInfos");
 
             migrationBuilder.DropTable(
-                name: "Visit");
+                name: "Visits");
 
             migrationBuilder.DropTable(
                 name: "Cabinets");
