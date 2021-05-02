@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polyclinic.BLL.Implementation;
+using Polyclinic.BLL.Interfaces;
 using Polyclinic.DAL.Implementation.EF;
 using Polyclinic.DAL.Implementation.Repositories;
 using Polyclinic.DAL.Interfaces;
@@ -32,7 +34,12 @@ namespace Polyclinic
                 options.UseNpgsql(Configuration.GetConnectionString("PolyclinicConnection")));
             services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddTransient<IDoctorRepository, DoctorRepositry>();
+            services.AddScoped<IDoctorRepository, DoctorRepositry>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IVisitRepository, VisitRepository>();
+            services.AddTransient<IVisitService, VisitService>();
+            services.AddTransient<IPatientService, PatientService>();
+            services.AddTransient<IDoctorService, DoctorService>();
 
             services.AddControllersWithViews();
         }

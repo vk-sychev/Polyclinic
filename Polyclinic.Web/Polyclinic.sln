@@ -9,15 +9,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyclinic.DAL.Entities", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyclinic.DAL.Implementation", "..\Polyclinic.DAL.Implementation\Polyclinic.DAL.Implementation.csproj", "{9AA38372-8396-4A1F-B52D-2704B8B92EEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic.DAL.Interfaces", "..\Polyclinic.DAL.Interfaces\Polyclinic.DAL.Interfaces.csproj", "{1D4BD5E2-7120-4195-8487-B08B58E68A4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyclinic.DAL.Interfaces", "..\Polyclinic.DAL.Interfaces\Polyclinic.DAL.Interfaces.csproj", "{1D4BD5E2-7120-4195-8487-B08B58E68A4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic.BLL.Entities", "..\Polyclinic.BLL.Entities\Polyclinic.BLL.Entities.csproj", "{1FBF5B80-B417-48CB-A41F-1129794765FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyclinic.BLL.Entities", "..\Polyclinic.BLL.Entities\Polyclinic.BLL.Entities.csproj", "{1FBF5B80-B417-48CB-A41F-1129794765FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic.BLL.Interfaces", "..\Polyclinic.BLL.Interfaces\Polyclinic.BLL.Interfaces.csproj", "{CA76A1C0-DD87-44FD-ADA6-F0EEF6EEC25E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyclinic.BLL.Interfaces", "..\Polyclinic.BLL.Interfaces\Polyclinic.BLL.Interfaces.csproj", "{CA76A1C0-DD87-44FD-ADA6-F0EEF6EEC25E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic.BLL.Implementation", "..\Polyclinic.BLL.Implementation\Polyclinic.BLL.Implementation.csproj", "{96626313-0C6F-4C7C-93A5-E1D88A9E6B32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyclinic.BLL.Implementation", "..\Polyclinic.BLL.Implementation\Polyclinic.BLL.Implementation.csproj", "{96626313-0C6F-4C7C-93A5-E1D88A9E6B32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic.Infrastructure", "..\Polyclinic.Infrastructure\Polyclinic.Infrastructure.csproj", "{4D0FD3DA-EADA-409E-BFDD-A03C29426CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polyclinic.Infrastructure", "..\Polyclinic.Infrastructure\Polyclinic.Infrastructure.csproj", "{4D0FD3DA-EADA-409E-BFDD-A03C29426CDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{6A1D80BB-7C63-4AB9-867C-CD1D4F2B52D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{4E3287C4-FDE2-47BA-A6EA-FA47766BC351}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +64,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A13C95C-4CEF-4425-91E9-32926D44108B} = {6A1D80BB-7C63-4AB9-867C-CD1D4F2B52D1}
+		{9AA38372-8396-4A1F-B52D-2704B8B92EEF} = {6A1D80BB-7C63-4AB9-867C-CD1D4F2B52D1}
+		{1D4BD5E2-7120-4195-8487-B08B58E68A4B} = {6A1D80BB-7C63-4AB9-867C-CD1D4F2B52D1}
+		{1FBF5B80-B417-48CB-A41F-1129794765FB} = {4E3287C4-FDE2-47BA-A6EA-FA47766BC351}
+		{CA76A1C0-DD87-44FD-ADA6-F0EEF6EEC25E} = {4E3287C4-FDE2-47BA-A6EA-FA47766BC351}
+		{96626313-0C6F-4C7C-93A5-E1D88A9E6B32} = {4E3287C4-FDE2-47BA-A6EA-FA47766BC351}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7ABAF0F6-65E9-4E2F-8FB9-48359B42B672}

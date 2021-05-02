@@ -11,5 +11,13 @@ namespace Polyclinic.DAL.Interfaces
         Task CreateVisitAsync(Visit visit);
 
         Task SaveAsync();
+
+        Task<List<Visit>> GetVisitsAsync();
+
+        Task<Visit> GetVisitByIdAsync(int id);
+
+        void DeleteVisitAsync(Visit visit);
+
+        void UpdateVisitAsync(Visit visit);
     }
 }
