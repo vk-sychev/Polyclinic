@@ -8,8 +8,20 @@ namespace Polyclinic.BLL.Interfaces
 {
     public interface IDoctorService
     {
-        Task<DoctorDTO> GetDoctorByIdAsync(int? id);
+        Task<DoctorDTO> GetDoctorByIdAsync(int id);
 
-        Task<List<DoctorDTO>> GetAllDoctorsAsync();
+        Task<List<DoctorDTO>> GetDoctorsAsync();
+
+        Task<PageModel<DoctorDTO>> GetDoctorsPaginatedAsync(int pageIndex, int pageSize);
+
+        Task CreateDoctorAsync(DoctorDTO doctorDTO);
+
+        Task DeleteDoctorAsync(int id);
+
+        Task UpdateDoctorAsync(DoctorDTO doctorDTO);
+
+        Task<List<SpecialtyDTO>> GetSpecialtiesAsync();
+
+        Task<List<DoctorDTO>> GetStatistics();
     }
 }

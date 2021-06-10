@@ -1,6 +1,6 @@
 using System;
 
-namespace Polyclinic.Models
+namespace Polyclinic.Web.Models
 {
     public class ErrorViewModel
     {

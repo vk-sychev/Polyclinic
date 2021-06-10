@@ -12,6 +12,8 @@ namespace Polyclinic.DAL.Entities
 
         public string Description { get; set; }
 
+        public List<Patient> Patients { get; set; }
+
         public List<DiagnosisInfo> DiagnosisInfos { get; set; }
     }
 }

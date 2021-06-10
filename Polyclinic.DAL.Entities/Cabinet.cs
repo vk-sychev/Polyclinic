@@ -13,5 +13,7 @@ namespace Polyclinic.DAL.Entities
         public string Description { get; set; }
 
         public List<CabinetInfo> CabinetInfos { get; set; }
+
+        public List<Doctor> Doctors { get; set; }
     }
 }

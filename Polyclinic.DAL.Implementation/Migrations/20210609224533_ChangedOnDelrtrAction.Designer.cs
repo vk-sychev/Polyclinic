@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Polyclinic.DAL.Implementation.EF;
@@ -9,9 +10,10 @@ using Polyclinic.DAL.Implementation.EF;
 namespace Polyclinic.DAL.Implementation.Migrations
 {
     [DbContext(typeof(PolyclinicContext))]
-    partial class PolyclinicContextModelSnapshot : ModelSnapshot
+    [Migration("20210609224533_ChangedOnDelrtrAction")]
+    partial class ChangedOnDelrtrAction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

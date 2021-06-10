@@ -10,7 +10,23 @@ namespace Polyclinic.DAL.Interfaces
     {
         Task<Doctor> GetDoctorByIdAsync(int id);
 
-        Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
+        Task<List<Doctor>> GetDoctorsAsync();
+
+        Task<List<Doctor>> GetDoctorsPaginatedAsync(int pageIndex, int pageSize);
+
+        Task<int> GetCountOfDoctorsAsync();
+
+        Task CreateDoctorAsync(Doctor doctor);
+
+        void DeleteDoctor(Doctor doctor);
+
+        void UpdateDoctor(Doctor doctor);
+
+        Task<List<Specialty>> GetSpecialtiesAsync();
+
+        void UpdateUser(User user);
+
+        Task<List<Doctor>> GetStatistics();
 
         Task SaveAsync();
     }

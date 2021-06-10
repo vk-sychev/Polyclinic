@@ -19,16 +19,58 @@ namespace Polyclinic.DAL.Implementation.Repositories
             _db = context;
         }
 
-        public async Task<IEnumerable<Patient>> GetAllPatiensAsync()
+        public async Task CreatePatientAsync(Patient patient)
         {
-            var patiens = await _db.Patients.Include(x => x.User).ToListAsync();
-            return patiens;
+            await _db.Patients.AddAsync(patient);
         }
 
-        public async Task<Patient> GetPatientByIdAsync(int id)
+        public void DeletePatient(Patient patient)
         {
-            var patient = await _db.Patients.FindAsync(id);
-            return patient;
+            _db.Patients.Remove(patient);
+        }
+
+
+        public Task<List<Patient>> GetPatiensAsync()
+        {
+            return _db.Patients.Include(x => x.User)
+                .Include(x => x.DiagnosisInfos)
+                .ThenInclude(x => x.Diagnosis)
+                .ToListAsync();
+        }
+
+        public Task<Patient> GetPatientByIdAsync(int id)
+        {
+            return _db.Patients.Include(x => x.User)
+                        .Include(x => x.DiagnosisInfos)
+                        .ThenInclude(x => x.Diagnosis).FirstOrDefaultAsync(x => x.PatientId == id);
+        }
+
+        public Task<int> GetCountOfPatientsAsync()
+        {
+            var query = _db.Patients.Include(x => x.User)
+                .Include(x => x.DiagnosisInfos)
+                .ThenInclude(x => x.Diagnosis);
+
+            return query.CountAsync();
+        }
+
+        public Task<List<Patient>> GetPatientsPaginatedAsync(int pageIndex, int pageSize)
+        {
+            var query = _db.Patients.Include(x => x.User)
+                .Include(x => x.DiagnosisInfos)
+                .ThenInclude(x => x.Diagnosis);
+
+            return query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public void UpdatePatient(Patient patient)
+        {
+            _db.Entry(patient).State = EntityState.Modified;
+        }
+
+        public void UpdateUser(User user)
+        {
+            _db.Entry(user).State = EntityState.Modified;
         }
 
         public async Task SaveAsync()

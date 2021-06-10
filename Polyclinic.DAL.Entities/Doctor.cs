@@ -22,6 +22,10 @@ namespace Polyclinic.DAL.Entities
 
         public List<CabinetInfo> CabinetInfos { get; set; }
 
+        public List<Cabinet> Cabinets { get; set; }
+
         public List<Visit> Visits { get; set; }
+
+        public List<Patient> Patients { get; set; }
     }
 }

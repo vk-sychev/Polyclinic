@@ -14,10 +14,14 @@ namespace Polyclinic.DAL.Interfaces
 
         Task<List<Visit>> GetVisitsAsync();
 
+        Task<List<Visit>> GetVisitsPaginatedAsync(int pageIndex, int pageSize);
+
+        Task<int> GetCountOfVisitsAsync();
+
         Task<Visit> GetVisitByIdAsync(int id);
 
-        void DeleteVisitAsync(Visit visit);
+        void DeleteVisit(Visit visit);
 
-        void UpdateVisitAsync(Visit visit);
+        void UpdateVisit(Visit visit);
     }
 }

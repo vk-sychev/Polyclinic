@@ -29,40 +29,41 @@ namespace Polyclinic.BLL.Implementation
             {
                 throw new ArgumentNullException(nameof(visitDTO), "Visit is null");
             }
+
             var visit = _mapper.Map<Visit>(visitDTO);
             await _visitRepository.CreateVisitAsync(visit);
             await _visitRepository.SaveAsync();
         }
 
-        public async Task DeleteVisitAsync(int? id)
+        public async Task DeleteVisitAsync(int id)
         {
-            if (id == null)
+            if (id <= 0)
             {
-                throw new ArgumentNullException(nameof(id), "Visit's id is null");
+                throw new ArgumentException(nameof(id), "Visit's id <= 0");
             }
 
-            var visit = await _visitRepository.GetVisitByIdAsync(id.Value);
+            var visit = await _visitRepository.GetVisitByIdAsync(id);
 
             if (visit == null)
             {
-                throw new NotFoundException($"Visit with id = {id.Value} isn't found");
+                throw new NotFoundException($"Visit with id = {id} isn't found");
             }
-            _visitRepository.DeleteVisitAsync(visit);
+            _visitRepository.DeleteVisit(visit);
             await _visitRepository.SaveAsync();
         }
 
-        public async Task<VisitDTO> GetVisitByIdAsync(int? id)
+        public async Task<VisitDTO> GetVisitByIdAsync(int id)
         {
-            if (id == null)
+            if (id <= 0)
             {
-                throw new ArgumentNullException(nameof(id), "Visit's id is null");
+                throw new ArgumentException(nameof(id), "Visit's id <= 0");
             }
 
-            var visit = await _visitRepository.GetVisitByIdAsync(id.Value);
+            var visit = await _visitRepository.GetVisitByIdAsync(id);
 
             if (visit == null)
             {
-                throw new NotFoundException($"Visit with id = {id.Value} isn't found");
+                throw new NotFoundException($"Visit with id = {id} isn't found");
             }
 
             var mappedVisit = _mapper.Map<VisitDTO>(visit);
@@ -76,6 +77,15 @@ namespace Polyclinic.BLL.Implementation
             return mappedVisits;
         }
 
+        public async Task<PageModel<VisitDTO>> GetVisitsPaginatedAsync(int pageIndex, int pageSize)
+        {
+            var visits = await _visitRepository.GetVisitsPaginatedAsync(pageIndex, pageSize);
+            var mappedVisits = _mapper.Map<List<VisitDTO>>(visits);
+
+            var count = await _visitRepository.GetCountOfVisitsAsync();
+            return new PageModel<VisitDTO>() { Items = mappedVisits, Count = count };
+        }
+
         public Task UpdateVisitAsync(VisitDTO visitDTO)
         {
             if (visitDTO == null)
@@ -83,7 +93,7 @@ namespace Polyclinic.BLL.Implementation
                 throw new ArgumentNullException(nameof(visitDTO), "Visit is null");
             }
             var visit = _mapper.Map<Visit>(visitDTO);
-            _visitRepository.UpdateVisitAsync(visit);
+            _visitRepository.UpdateVisit(visit);
             return _visitRepository.SaveAsync();
         }
     }

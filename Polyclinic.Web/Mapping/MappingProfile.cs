@@ -22,6 +22,9 @@ namespace Polyclinic.Web.Mapping
             CreateMap<VisitViewModel, VisitDTO>().ReverseMap();
             CreateMap<PatientViewModel, PatientDTO>().ReverseMap();
             CreateMap<UserViewModel, UserDTO>().ReverseMap();
+
+            CreateMap<Specialty, SpecialtyDTO>().ReverseMap();
+            CreateMap<Cabinet, CabinetDTO>().ReverseMap();
         }
     }
 }

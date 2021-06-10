@@ -12,9 +12,11 @@ namespace Polyclinic.BLL.Interfaces
 
         Task<List<VisitDTO>> GetVisitsAsync();
 
-        Task<VisitDTO> GetVisitByIdAsync(int? id);
+        Task<PageModel<VisitDTO>> GetVisitsPaginatedAsync(int pageIndex, int pageSize);
 
-        Task DeleteVisitAsync(int? id);
+        Task<VisitDTO> GetVisitByIdAsync(int id);
+
+        Task DeleteVisitAsync(int id);
 
         Task UpdateVisitAsync(VisitDTO visitDTO);
     }

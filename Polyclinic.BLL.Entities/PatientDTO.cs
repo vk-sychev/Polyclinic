@@ -13,5 +13,7 @@ namespace Polyclinic.BLL.Entities
         public UserDTO User { get; set; }
 
         public string Policy { get; set; }
+
+        public List<DiagnosisDTO> Diagnosis { get; set; } = new List<DiagnosisDTO>();
     }
 }

@@ -28,14 +28,14 @@ namespace Polyclinic.DAL.Implementation.Repositories
             await _db.Visits.AddAsync(visit);
         }
 
-        public void DeleteVisitAsync(Visit visit)
+        public void DeleteVisit(Visit visit)
         {
             _db.Visits.Remove(visit);
         }
 
-        public async Task<Visit> GetVisitByIdAsync(int id)
+        public Task<Visit> GetVisitByIdAsync(int id)
         {
-            return await _db.Visits.Where(x => x.VisitId == id)
+            return _db.Visits.Where(x => x.VisitId == id)
                                    .Include(d => d.Doctor)
                                    .ThenInclude(u => u.User)
                                    .Include(p => p.Patient)
@@ -44,13 +44,33 @@ namespace Polyclinic.DAL.Implementation.Repositories
 
         }
 
-        public async Task<List<Visit>> GetVisitsAsync()
+        public Task<List<Visit>> GetVisitsAsync()
         {
-            return await _db.Visits.Include(d => d.Doctor)
+            return _db.Visits.Include(d => d.Doctor)
                                    .ThenInclude(u => u.User)
                                    .Include(p => p.Patient)
                                    .ThenInclude(u => u.User)
                                    .ToListAsync();
+        }
+
+        public Task<int> GetCountOfVisitsAsync()
+        {
+            var query = _db.Visits.Include(d => d.Doctor)
+                       .ThenInclude(u => u.User)
+                       .Include(p => p.Patient)
+                       .ThenInclude(u => u.User);
+
+            return query.CountAsync();
+        }
+
+        public Task<List<Visit>> GetVisitsPaginatedAsync(int pageIndex, int pageSize)
+        {
+            var query = _db.Visits.Include(d => d.Doctor)
+                                  .ThenInclude(u => u.User)
+                                  .Include(p => p.Patient)
+                                  .ThenInclude(u => u.User);
+
+            return query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task SaveAsync()
@@ -58,7 +78,7 @@ namespace Polyclinic.DAL.Implementation.Repositories
             await _db.SaveChangesAsync();
         }
 
-        public void UpdateVisitAsync(Visit visit)
+        public void UpdateVisit(Visit visit)
         {
             _db.Entry(visit).State = EntityState.Modified;
         }

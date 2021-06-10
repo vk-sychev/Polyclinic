@@ -1,18 +1,18 @@
-﻿@model Polyclinic.Web.Models.PageViewModel<Polyclinic.Web.Models.VisitViewModel>
+﻿@model Polyclinic.Web.Models.PageViewModel<Polyclinic.Web.Models.DoctorViewModel>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "GetDoctors";
     string hasPreviousPage = Model.HasPreviousPage ? "" : "disabled";
     string hasNextPage = Model.HasNextPage ? "" : "disabled";
-    string controller = "Home";
-    string action = "Index";
+    string controller = "Doctor";
+    string action = "GetDoctors";
     var pageSize = ViewBag.pageSize;
 }
 
 <div class="d-flex justify-content-between mb-2">
-    <h1>All Visits</h1>
+    <h1>All Doctors</h1>
     <div class="mt-2">
-        <a asp-action="CreateVisit" asp-controller="Home" class="btn btn-primary">Create New Visit</a>
+        <a asp-action="CreateDoctor" asp-controller="Doctor" class="btn btn-primary">Create New Doctor</a>
     </div>
 </div>
 
@@ -20,51 +20,38 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().Patient.PatientFullName)
+                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().DoctorFullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().Doctor.DoctorFullName)
+                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().LicenseNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().DateVisit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().Complaint)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().Price)
+                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().Specialty.Name)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Items)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Patient.PatientFullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Doctor.DoctorFullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateVisit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Complaint)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <div class="d-flex justify-content-end px-3">
-                        @Html.ActionLink("Edit", "EditVisit", new { id = item.VisitId }, new { @class = "btn btn-outline-primary btn-sm" }) 
-                        @Html.ActionLink("Details", "DetailsVisit", new { id = item.VisitId }, new { @class = "btn btn-outline-secondary btn-sm ml-3" }) 
-                        @Html.ActionLink("Delete", "DeleteVisit", new { id = item.VisitId }, new { @class = "btn btn-outline-danger btn-sm ml-3" })
-                    </div>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model.Items) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicenseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialty.Name)
+            </td>
+
+            <td>
+                <div class="d-flex justify-content-end px-3">
+                    @Html.ActionLink("Edit", "EditDoctor", new { id = item.DoctorId }, new { @class = "btn btn-outline-primary btn-sm" })
+                    @Html.ActionLink("Delete", "DeleteDoctor", new { id = item.DoctorId }, new { @class = "btn btn-outline-danger btn-sm ml-3" })
+                </div>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
 

@@ -4,6 +4,7 @@ using Polyclinic.DAL.Implementation.EF;
 using Polyclinic.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,21 +19,86 @@ namespace Polyclinic.DAL.Implementation.Repositories
             _db = context;
         }
 
-        public async Task<IEnumerable<Doctor>> GetAllDoctorsAsync()
+        public async Task CreateDoctorAsync(Doctor doctor)
         {
-            var doctors = await _db.Doctors.Include(x => x.User).ToListAsync();
-            return doctors;
+            await _db.Doctors.AddAsync(doctor);
         }
 
-        public async Task<Doctor> GetDoctorByIdAsync(int id)
+        public void DeleteDoctor(Doctor doctor)
         {
-            var doctor = await _db.Doctors.FindAsync(id);
-            return doctor;
+            _db.Doctors.Remove(doctor);
         }
+
+        public Task<Doctor> GetDoctorByIdAsync(int id)
+        {
+            return _db.Doctors.Include(x => x.User)
+                .Include(x => x.CabinetInfos)
+                .ThenInclude(x => x.Cabinet)
+                .Include(x => x.Specialty)
+                .FirstOrDefaultAsync(x => x.DoctorId == id);
+        }
+
+        public Task<List<Doctor>> GetDoctorsAsync()
+        {
+            return _db.Doctors.Include(x => x.User)
+                    .Include(x => x.CabinetInfos)
+                    .ThenInclude(x => x.Cabinet)
+                    .Include(x => x.Specialty)
+                    .ToListAsync();
+        }
+
+        public Task<int> GetCountOfDoctorsAsync()
+        {
+            var query = _db.Doctors.Include(x => x.User)
+                    .Include(x => x.CabinetInfos)
+                    .ThenInclude(x => x.Cabinet)
+                    .Include(x => x.Specialty);
+
+            return query.CountAsync();
+        }
+
+        public Task<List<Doctor>> GetDoctorsPaginatedAsync(int pageIndex, int pageSize)
+        {
+            var query = _db.Doctors.Include(x => x.User)
+                    .Include(x => x.CabinetInfos)
+                    .ThenInclude(x => x.Cabinet)
+                    .Include(x => x.Specialty);
+
+            return query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public void UpdateDoctor(Doctor doctor)
+        {
+            _db.Entry(doctor).State = EntityState.Modified;
+        }
+
+        public void UpdateUser(User user)
+        {
+            _db.Entry(user).State = EntityState.Modified;
+        }
+
 
         public async Task SaveAsync()
         {
             await _db.SaveChangesAsync();
+        }
+
+        public Task<List<Specialty>> GetSpecialtiesAsync()
+        {
+            return _db.Specialties.ToListAsync();
+        }
+
+        public void UpdatePatient(Patient patient)
+        {
+            _db.Entry(patient).State = EntityState.Modified;
+        }
+
+        public Task<List<Doctor>> GetStatistics()
+        {
+            return _db.Doctors.Include(x => x.User)
+                              .Include(x => x.Visits)
+                              .ThenInclude(x => x.Patient)
+                              .ToListAsync();
         }
     }
 }

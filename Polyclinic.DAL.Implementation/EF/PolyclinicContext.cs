@@ -43,6 +43,57 @@ namespace Polyclinic.DAL.Implementation.EF
                 .Property(x => x.Description)
                 .IsRequired(false);
 
+
+            modelBuilder.Entity<Doctor>()
+                .HasMany(t => t.Cabinets)
+                .WithMany(s => s.Doctors)
+
+                .UsingEntity<CabinetInfo>(
+                    j => j.HasOne(tr => tr.Cabinet)
+                        .WithMany(t => t.CabinetInfos)
+                        .HasForeignKey(tr => tr.CabinetId),
+
+                    j => j.HasOne(tr => tr.Doctor)
+                        .WithMany(s => s.CabinetInfos)
+                        .HasForeignKey(tr => tr.DoctorId),
+
+                    j => j.HasKey(tr => tr.CabinetInfoId)
+                );
+
+            modelBuilder.Entity<Patient>()
+                .HasMany(t => t.Diagnoses)
+                .WithMany(s => s.Patients)
+
+                .UsingEntity<DiagnosisInfo>(
+                    j => j.HasOne(tr => tr.Diagnosis)
+                        .WithMany(s => s.DiagnosisInfos)
+                        .HasForeignKey(tr => tr.DiagnosisId),
+
+                    j => j.HasOne(tr => tr.Patient)
+                        .WithMany(t => t.DiagnosisInfos)
+                        .HasForeignKey(tr => tr.PatientId),
+
+                    j => j.HasKey(tr => tr.DiagnosisInfoId)
+                );
+
+
+            modelBuilder.Entity<Patient>()
+                .HasMany(t => t.Doctors)
+                .WithMany(s => s.Patients)
+
+                .UsingEntity<Visit>(
+                    j => j.HasOne(tr => tr.Doctor)
+                        .WithMany(s => s.Visits)
+                        .HasForeignKey(tr => tr.DoctorId),
+
+                    j => j.HasOne(tr => tr.Patient)
+                        .WithMany(t => t.Visits)
+                        .HasForeignKey(tr => tr.PatientId),
+
+                    j => j.HasKey(tr => tr.VisitId)
+                );
+
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();
 
