@@ -1,0 +1,44 @@
+﻿@model Polyclinic.BLL.Entities.SearchModel
+
+<h4>SearchModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="_SearchPartialView">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="d-inline d-flex justify-content-between mt-2">
+                <div class="form-group">
+                    <label asp-for="SpecialtyId" class="control-label"></label>
+                    <div>
+                        <select asp-for="SpecialtyId" class="form-select custom-select" asp-items="ViewBag.Specialties">
+                            <option selected="selected" disabled="disabled">Choose specialty</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="SpecialtyId" class="text-danger"></span>
+                </div>
+                <div class="mr-3 mt-2">
+                    <label class="control-label mr-4">Use Period</label>
+                    <input id="filterCheckbox" asp-for="IsPeriod" class="form-check-input" type="checkbox" name="IsFilterByDate" />
+                </div>
+
+                <div id="startDateFilter" class="mr-5">
+                    <input asp-for="StartDate" type="date" class="form-control" disabled="disabled" />
+                </div>
+
+                <div id="endDateFilter" class="mr-5">
+                    <input asp-for="EndDate" type="date" class="form-control" disabled="disabled" />
+                </div>
+
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -14,6 +14,8 @@ namespace Polyclinic.DAL.Interfaces
 
         Task<List<Visit>> GetVisitsAsync();
 
+        Task<List<Visit>> GetVisitsByDoctorIdAndDateAsync(int doctorId, DateTime date);
+
         Task<List<Visit>> GetVisitsPaginatedAsync(int pageIndex, int pageSize);
 
         Task<int> GetCountOfVisitsAsync();

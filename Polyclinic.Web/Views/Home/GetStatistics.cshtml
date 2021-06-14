@@ -2,7 +2,56 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    DateTime startDate = ViewBag.StartDate;
+    DateTime endDate = ViewBag.EndDate;
+    bool isPeriod = ViewBag.IsPeriod ?? false;
+    int specialtyId = ViewBag.SpecialtyId ?? 0;
 }
+<div class="d-inline d-flex justify-content-start">
+    <form asp-action="DownloadStatistics">
+        <input type="hidden" asp-for="@startDate" />
+        <input type="hidden" asp-for="@endDate" />
+        <input type="hidden" asp-for="@isPeriod" />
+        <input type="hidden" asp-for="@specialtyId" />
+
+        <div>
+            <input type="submit" value="Download" class="btn btn-primary mt-2 mr-3" />
+        </div>
+    </form>
+
+    <form asp-action="GetStatistics">
+        <div class="d-inline d-flex justify-content-between">
+            <div class="form-group d-inline d-flex justify-content-between mt-2 mr-5">
+                <label asp-for="@specialtyId" class="control-label mr-2 mt-1">Specialty</label>
+                <div>
+                    <select asp-for="@specialtyId" class="form-select custom-select" asp-items="ViewBag.Specialties">
+                        <option selected="selected" disabled="disabled">Choose specialty</option>
+                    </select>
+                </div>
+                <span asp-validation-for="@specialtyId" class="text-danger"></span>
+            </div>
+            <div class="d-inline d-flex justify-content-end mt-2">
+                <div class="mr-3 mt-2">
+                    <label asp-for="@isPeriod" class="control-label mr-4">Use Period</label>
+                    <input id="filterCheckbox" asp-for="@isPeriod" class="form-check-input" type="checkbox" name="IsFilterByDate" />
+                    <input id="hiddenInputForCheckBox" asp-for="@isPeriod" type="hidden" />
+                </div>
+
+                <div id="startDateFilter" class="mr-5">
+                    <input asp-for="@startDate" type="date" class="form-control" />
+                </div>
+
+                <div id="endDateFilter" class="mr-5">
+                    <input asp-for="@endDate" type="date" class="form-control" />
+                </div>
+                <div>
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 <table class="table">
     <thead>
@@ -11,13 +60,16 @@
                 @Html.DisplayNameFor(model => model.DoctorFullName)
             </th>
             <th>
-                Total Number of Visits
+                @Html.DisplayNameFor(model => model.Specialty)
             </th>
             <th>
-                Total Number of Patients
+                Number of Visits
             </th>
             <th>
-                Total Earned Money
+                Number of Patients
+            </th>
+            <th>
+                Earned Money
             </th>
             <th></th>
         </tr>
@@ -28,6 +80,9 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.DoctorFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialty.Name)
                 </td>
                 <td>
                     @item.Visits.Count
@@ -43,3 +98,28 @@
     </tbody>
 </table>
 
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            var checkBox = $("#filterCheckbox");
+            var hiddenInputForCheckBox = $("#hiddenInputForCheckBox")
+            var startDateInput = $("#startDate");
+            var endDateInput = $("#endDate");
+
+            checkBox.click(function () {
+                if ($(this).is(':checked')) {
+                    $(hiddenInputForCheckBox).val(true);
+
+                    startDateInput.prop("disabled", false);
+                    endDateInput.prop("disabled", false);
+                }
+                else {
+                    $(hiddenInputForCheckBox).val(false);
+
+                    startDateInput.prop("disabled", true);
+                    endDateInput.prop("disabled", true);
+                }
+            })
+        })
+    }(jQuery))
+</script>

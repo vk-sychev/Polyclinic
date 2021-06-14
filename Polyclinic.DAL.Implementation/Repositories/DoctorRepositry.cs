@@ -98,7 +98,39 @@ namespace Polyclinic.DAL.Implementation.Repositories
             return _db.Doctors.Include(x => x.User)
                               .Include(x => x.Visits)
                               .ThenInclude(x => x.Patient)
+                              .Include(x => x.Specialty)
                               .ToListAsync();
+        }
+
+        public Task<List<Doctor>> GetStatisticsBySpecialty(int specialtyId)
+        {
+            return _db.Doctors.Include(x => x.User)
+                              .Include(x => x.Visits)
+                              .ThenInclude(x => x.Patient)
+                              .Include(x => x.Specialty)
+                              .Where(x => x.SpecialtyId == specialtyId)
+                              .ToListAsync();
+        }
+
+        public Task<List<Doctor>> GetStatisticsByPeriod(DateTime startDate, DateTime endDate)
+        {
+            return _db.Doctors.Include(x => x.User)
+                              .Include(x => x.Visits
+                                    .Where(x => x.DateVisit >= startDate && x.DateVisit <= endDate))
+                              .ThenInclude(x => x.Patient)
+                              .Include(x => x.Specialty)
+                              .ToListAsync();
+        }
+
+        public Task<List<Doctor>> GetStatisticsBySpecialtyAndPeriod(int specialtyId, DateTime startDate, DateTime endDate)
+        {
+            return _db.Doctors.Include(x => x.User)
+                  .Include(x => x.Visits
+                        .Where(x => x.DateVisit >= startDate && x.DateVisit <= endDate))
+                  .ThenInclude(x => x.Patient)
+                  .Include(x => x.Specialty)
+                  .Where(x => x.SpecialtyId == specialtyId)
+                  .ToListAsync();
         }
     }
 }

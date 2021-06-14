@@ -1,4 +1,5 @@
-﻿namespace Polyclinic.BLL.Entities
+﻿
+namespace Polyclinic.BLL.Entities
 {
     public class SpecialtyDTO
     {
