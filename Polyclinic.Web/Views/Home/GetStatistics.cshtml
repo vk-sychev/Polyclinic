@@ -34,15 +34,15 @@
                 <div class="mr-3 mt-2">
                     <label asp-for="@isPeriod" class="control-label mr-4">Use Period</label>
                     <input id="filterCheckbox" asp-for="@isPeriod" class="form-check-input" type="checkbox" name="IsFilterByDate" />
-                    <input id="hiddenInputForCheckBox" asp-for="@isPeriod" type="hidden" />
+                    <input id="hiddenInputForCheckBox" asp-for="@isPeriod" type="hidden"/>
                 </div>
 
                 <div id="startDateFilter" class="mr-5">
-                    <input asp-for="@startDate" type="date" class="form-control" />
+                    <input id="startDateInput" asp-for="@startDate" type="date" class="form-control" />
                 </div>
 
                 <div id="endDateFilter" class="mr-5">
-                    <input asp-for="@endDate" type="date" class="form-control" />
+                    <input id="endDateInput" asp-for="@endDate" type="date" class="form-control"/>
                 </div>
                 <div>
                     <input type="submit" value="Save" class="btn btn-primary" />
@@ -103,8 +103,17 @@
         $(document).ready(function () {
             var checkBox = $("#filterCheckbox");
             var hiddenInputForCheckBox = $("#hiddenInputForCheckBox")
-            var startDateInput = $("#startDate");
-            var endDateInput = $("#endDate");
+            var startDateInput = $("#startDateInput");
+            var endDateInput = $("#endDateInput");
+            console.log(startDateInput);
+            console.log(endDateInput);
+
+            var isDisabled = hiddenInputForCheckBox.val().toString().toLowerCase();
+            startDateInput.prop("disabled", Boolean(isDisabled == "false"));
+            endDateInput.prop("disabled", Boolean(isDisabled == "false"));
+
+            console.log(isDisabled);
+            console.log(Boolean(isDisabled == "false"));
 
             checkBox.click(function () {
                 if ($(this).is(':checked')) {
