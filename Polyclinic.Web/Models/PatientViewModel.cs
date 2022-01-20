@@ -19,6 +19,7 @@ namespace Polyclinic.Web.Models
 
         public List<DiagnosisDTO> Diagnosis { get; set; } = new List<DiagnosisDTO>();
 
+        [DisplayName("Patient's FullName")]
         public string PatientFullName { get { return (User != null) ? $"{User.Surname} {User.Name}" : ""; } }
     }
 }

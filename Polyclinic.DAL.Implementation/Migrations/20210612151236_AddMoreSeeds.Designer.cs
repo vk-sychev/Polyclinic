@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Polyclinic.DAL.Implementation.EF;
@@ -9,9 +10,10 @@ using Polyclinic.DAL.Implementation.EF;
 namespace Polyclinic.DAL.Implementation.Migrations
 {
     [DbContext(typeof(PolyclinicContext))]
-    partial class PolyclinicContextModelSnapshot : ModelSnapshot
+    [Migration("20210612151236_AddMoreSeeds")]
+    partial class AddMoreSeeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -529,7 +531,7 @@ namespace Polyclinic.DAL.Implementation.Migrations
                         new
                         {
                             VisitId = 1,
-                            DateVisit = new DateTime(2021, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateVisit = new DateTime(2021, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorId = 1,
                             PatientId = 1,
                             Price = 1300.0
@@ -537,8 +539,8 @@ namespace Polyclinic.DAL.Implementation.Migrations
                         new
                         {
                             VisitId = 2,
-                            Complaint = "Have a headache",
-                            DateVisit = new DateTime(2021, 7, 20, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Complaint = "Too expensive",
+                            DateVisit = new DateTime(2021, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorId = 2,
                             PatientId = 1,
                             Price = 1000.0
@@ -546,178 +548,8 @@ namespace Polyclinic.DAL.Implementation.Migrations
                         new
                         {
                             VisitId = 3,
-                            DateVisit = new DateTime(2021, 6, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateVisit = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorId = 1,
-                            PatientId = 2,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 4,
-                            DateVisit = new DateTime(2021, 6, 25, 15, 30, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 1,
-                            PatientId = 4,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 5,
-                            DateVisit = new DateTime(2021, 6, 26, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 5,
-                            PatientId = 5,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 6,
-                            DateVisit = new DateTime(2021, 6, 26, 11, 45, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 5,
-                            PatientId = 4,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 7,
-                            DateVisit = new DateTime(2021, 6, 26, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 4,
-                            PatientId = 3,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 8,
-                            DateVisit = new DateTime(2021, 5, 10, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 1,
-                            PatientId = 1,
-                            Price = 1300.0
-                        },
-                        new
-                        {
-                            VisitId = 9,
-                            Complaint = "Have a headache",
-                            DateVisit = new DateTime(2021, 5, 10, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 2,
-                            PatientId = 3,
-                            Price = 1000.0
-                        },
-                        new
-                        {
-                            VisitId = 10,
-                            DateVisit = new DateTime(2021, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 1,
-                            PatientId = 2,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 11,
-                            DateVisit = new DateTime(2021, 5, 5, 15, 30, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 1,
-                            PatientId = 4,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 12,
-                            DateVisit = new DateTime(2021, 5, 16, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 5,
-                            PatientId = 5,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 13,
-                            DateVisit = new DateTime(2021, 5, 6, 11, 45, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 5,
-                            PatientId = 4,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 14,
-                            DateVisit = new DateTime(2021, 5, 30, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 4,
-                            PatientId = 3,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 15,
-                            DateVisit = new DateTime(2021, 5, 10, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 1,
-                            PatientId = 1,
-                            Price = 1300.0
-                        },
-                        new
-                        {
-                            VisitId = 16,
-                            Complaint = "Have a headache",
-                            DateVisit = new DateTime(2021, 5, 10, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 2,
-                            PatientId = 3,
-                            Price = 1000.0
-                        },
-                        new
-                        {
-                            VisitId = 17,
-                            DateVisit = new DateTime(2021, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 1,
-                            PatientId = 2,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 18,
-                            DateVisit = new DateTime(2021, 5, 5, 15, 30, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 1,
-                            PatientId = 4,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 19,
-                            DateVisit = new DateTime(2021, 5, 16, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 5,
-                            PatientId = 5,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 20,
-                            DateVisit = new DateTime(2021, 5, 6, 11, 45, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 5,
-                            PatientId = 4,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 21,
-                            DateVisit = new DateTime(2021, 5, 30, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 7,
-                            PatientId = 3,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 22,
-                            DateVisit = new DateTime(2021, 7, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 6,
-                            PatientId = 1,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 23,
-                            DateVisit = new DateTime(2021, 7, 26, 11, 45, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 7,
-                            PatientId = 4,
-                            Price = 1200.0
-                        },
-                        new
-                        {
-                            VisitId = 24,
-                            DateVisit = new DateTime(2021, 7, 27, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            DoctorId = 7,
                             PatientId = 2,
                             Price = 1200.0
                         });

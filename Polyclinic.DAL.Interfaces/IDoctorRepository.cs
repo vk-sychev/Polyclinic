@@ -28,6 +28,12 @@ namespace Polyclinic.DAL.Interfaces
 
         Task<List<Doctor>> GetStatistics();
 
+        Task<List<Doctor>> GetStatisticsBySpecialty(int specialtyId);
+
+        Task<List<Doctor>> GetStatisticsByPeriod(DateTime startDate, DateTime endDate);
+
+        Task<List<Doctor>> GetStatisticsBySpecialtyAndPeriod(int specialtyId, DateTime startDate, DateTime endDate);
+
         Task SaveAsync();
     }
 }

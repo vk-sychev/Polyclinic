@@ -24,6 +24,9 @@
                 @Html.DisplayNameFor(model => model.Items.FirstOrDefault().PatientFullName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Items.FirstOrDefault().User.BornDate)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Items.FirstOrDefault().Policy)
             </th>
             <th></th>
@@ -34,6 +37,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.PatientFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.BornDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Policy)

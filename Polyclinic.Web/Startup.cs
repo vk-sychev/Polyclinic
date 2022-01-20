@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,8 +13,11 @@ using Polyclinic.DAL.Implementation.EF;
 using Polyclinic.DAL.Implementation.Repositories;
 using Polyclinic.DAL.Interfaces;
 using Polyclinic.Web.Mapping;
+using Polyclinic.Web.Models;
+using Polyclinic.Web.Validation;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,11 +42,19 @@ namespace Polyclinic
             services.AddScoped<IDoctorRepository, DoctorRepositry>();
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IVisitRepository, VisitRepository>();
-            services.AddTransient<IVisitService, VisitService>();
-            services.AddTransient<IPatientService, PatientService>();
-            services.AddTransient<IDoctorService, DoctorService>();
+            services.AddScoped<IVisitService, VisitService>();
+            services.AddScoped<IPatientService, PatientService>();
+            services.AddScoped<IDoctorService, DoctorService>();
 
-            services.AddControllersWithViews();
+            services.AddScoped<IValidator<VisitViewModel>, VisitViewModelValidator>();
+            services.AddScoped<IValidator<UserViewModel>, UserViewModelValidator>();
+            services.AddScoped<IValidator<DoctorViewModel>, DoctorViewModelValidator>();
+            services.AddScoped<IValidator<PatientViewModel>, PatientViewModelValidator>();
+
+            services.AddControllersWithViews()
+                .AddFluentValidation(options => options.ImplicitlyValidateChildProperties = true);
+
+            ValidatorOptions.Global.LanguageManager.Enabled = false;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

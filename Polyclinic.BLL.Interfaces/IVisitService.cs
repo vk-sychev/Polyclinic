@@ -8,7 +8,7 @@ namespace Polyclinic.BLL.Interfaces
 {
     public interface IVisitService
     {
-        Task CreateVisitAsync(VisitDTO visitDTO);
+        Task<bool> CreateVisitAsync(VisitDTO visitDTO);
 
         Task<List<VisitDTO>> GetVisitsAsync();
 
@@ -18,6 +18,6 @@ namespace Polyclinic.BLL.Interfaces
 
         Task DeleteVisitAsync(int id);
 
-        Task UpdateVisitAsync(VisitDTO visitDTO);
+        Task<bool> UpdateVisitAsync(VisitDTO visitDTO);
     }
 }

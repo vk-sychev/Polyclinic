@@ -82,5 +82,15 @@ namespace Polyclinic.DAL.Implementation.Repositories
         {
             _db.Entry(visit).State = EntityState.Modified;
         }
+
+        public Task<List<Visit>> GetVisitsByDoctorIdAndDateAsync(int doctorId, DateTime date)
+        {
+            return _db.Visits.Include(d => d.Doctor)
+                       .ThenInclude(u => u.User)
+                       .Include(p => p.Patient)
+                       .ThenInclude(u => u.User)
+                       .Where(x => x.DoctorId == doctorId && x.DateVisit.Date == date)
+                       .ToListAsync();
+        }
     }
 }

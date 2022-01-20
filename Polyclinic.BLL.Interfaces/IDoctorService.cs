@@ -1,6 +1,7 @@
 ﻿using Polyclinic.BLL.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,8 @@ namespace Polyclinic.BLL.Interfaces
 
         Task<List<SpecialtyDTO>> GetSpecialtiesAsync();
 
-        Task<List<DoctorDTO>> GetStatistics();
+        Task<List<DoctorDTO>> GetStatisticsAsync(SearchModel model);
+
+        Task<byte[]> GetStatisticsInFileAsync(SearchModel model);
     }
 }

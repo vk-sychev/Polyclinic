@@ -94,8 +94,16 @@ namespace Polyclinic.Controllers
             {
                 _logger.LogInformation($"Home - Create Visit Post Request");
                 var visitDTO = _mapper.Map<VisitDTO>(model);
-                await _visitService.CreateVisitAsync(visitDTO);
-                return RedirectToAction("Index", "Home");
+                var isValidDate = await _visitService.CreateVisitAsync(visitDTO);
+
+                if (isValidDate)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("InvalidDate", "This time is already taken!");
+                }
             }
             ViewBag.Doctors = await GetDoctors();
             ViewBag.Patiens = await GetPatiens();
@@ -144,14 +152,39 @@ namespace Polyclinic.Controllers
             return View(mappedVisit);
         }
 
-        [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> GetStatistics() 
+        public async Task<IActionResult> GetStatistics(SearchModel model) 
         {
             _logger.LogInformation("Home - GetStatistics");
-            var doctors = await _doctorService.GetStatistics();
+            var doctors = await _doctorService.GetStatisticsAsync(model);
             var mappedVisits = _mapper.Map<List<DoctorViewModel>>(doctors);
+
+            ViewBag.Specialties = await GetSpecialties();
+            ViewBag.IsPeriod = model.IsPeriod;
+            ViewBag.StartDate = model.StartDate;
+            ViewBag.EndDate = model.EndDate;
+            ViewBag.SpecialtyId = model.SpecialtyId;
+
             return View(mappedVisits);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> DownloadStatistics(SearchModel model)
+        {
+            var content = await _doctorService.GetStatisticsInFileAsync(model);
+
+            return File(
+                content,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "Statistics.xlsx");
+        }
+
+        private async Task<SelectList> GetSpecialties()
+        {
+            var specialties = await _doctorService.GetSpecialtiesAsync();
+            specialties = specialties.Prepend(new SpecialtyDTO { SpecialtyId = 0, Name = "All" }).ToList();
+            return new SelectList(specialties, "SpecialtyId", "Name");
         }
     }
 }

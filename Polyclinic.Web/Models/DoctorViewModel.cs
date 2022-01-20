@@ -28,6 +28,7 @@ namespace Polyclinic.Web.Models
 
         public List<VisitViewModel> Visits { get; set; } = new List<VisitViewModel>();
 
+        [DisplayName("Doctor's FullName")]
         public string DoctorFullName { get { return (User != null) ? $"{User.Surname} {User.Name}" : ""; } }
     }
 }

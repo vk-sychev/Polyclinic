@@ -60,7 +60,77 @@ namespace Polyclinic.DAL.Implementation.EF
                 Snills = "6789"
             };
 
-            modelBuilder.Entity<User>().HasData(user1, user2, user3, user4, user5);
+            var user6 = new User()
+            {
+                UserId = 6,
+                Name = "Andrey",
+                Surname = "Kartashov",
+                BornDate = new DateTime(1989, 03, 10),
+                PassportData = "2342343562",
+                Snills = "8543"
+            };
+
+            var user7 = new User()
+            {
+                UserId = 7,
+                Name = "Kirill",
+                Surname = "Mikhaylov",
+                BornDate = new DateTime(1995, 01, 16),
+                PassportData = "0934765194",
+                Snills = "1029"
+            };
+
+            var user8 = new User()
+            {
+                UserId = 8,
+                Name = "Alexey",
+                Surname = "Tereshkov",
+                BornDate = new DateTime(1998, 07, 17),
+                PassportData = "1241241897",
+                Snills = "9823"
+            };
+
+            var user9 = new User()
+            {
+                UserId = 9,
+                Name = "Vitaliy",
+                Surname = "Lobanov",
+                BornDate = new DateTime(1993, 08, 10),
+                PassportData = "0375913498",
+                Snills = "9012"
+            };
+
+            var user10 = new User()
+            {
+                UserId = 10,
+                Name = "Ruslan",
+                Surname = "Mayboroda",
+                BornDate = new DateTime(1999, 10, 14),
+                PassportData = "4012783409",
+                Snills = "1872"
+            };
+
+            var user11 = new User()
+            {
+                UserId = 11,
+                Name = "Nikolay",
+                Surname = "Kondusov",
+                BornDate = new DateTime(1990, 05, 18),
+                PassportData = "7812093476",
+                Snills = "1047"
+            };
+
+            var user12 = new User()
+            {
+                UserId = 12,
+                Name = "Mikhail",
+                Surname = "Miclayev",
+                BornDate = new DateTime(2000, 09, 01),
+                PassportData = "9012456512",
+                Snills = "1045"
+            };
+
+            modelBuilder.Entity<User>().HasData(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12);
 
 
 
@@ -70,7 +140,7 @@ namespace Polyclinic.DAL.Implementation.EF
                 Name = "Endocrinologist"
             };
 
-            var specilaty2 = new Specialty()
+            var specialty2 = new Specialty()
             {
                 SpecialtyId = 2,
                 Name = "Сardiologist"
@@ -82,13 +152,13 @@ namespace Polyclinic.DAL.Implementation.EF
                 Name = "Therapist"
             };
 
-            var specilaty4 = new Specialty()
+            var specialty4 = new Specialty()
             {
                 SpecialtyId = 4,
                 Name = "Neurologist"
             };
 
-            modelBuilder.Entity<Specialty>().HasData(specialty1, specilaty2, specialty3, specilaty4);
+            modelBuilder.Entity<Specialty>().HasData(specialty1, specialty2, specialty3, specialty4);
 
 
 
@@ -104,7 +174,7 @@ namespace Polyclinic.DAL.Implementation.EF
             {
                 DoctorId = 2,
                 UserId = user2.UserId,
-                SpecialtyId = specilaty2.SpecialtyId,
+                SpecialtyId = specialty2.SpecialtyId,
                 LicenseNumber = "2222"
             };
 
@@ -116,13 +186,45 @@ namespace Polyclinic.DAL.Implementation.EF
                 LicenseNumber = "3333"
             };
 
-            modelBuilder.Entity<Doctor>().HasData(doctor1, doctor2, doctor3);
+            var doctor4 = new Doctor()
+            {
+                DoctorId = 4,
+                UserId = user6.UserId,
+                SpecialtyId = specialty4.SpecialtyId,
+                LicenseNumber = "4444"
+            };
+
+            var doctor5 = new Doctor()
+            {
+                DoctorId = 5,
+                UserId = user7.UserId,
+                SpecialtyId = specialty1.SpecialtyId,
+                LicenseNumber = "5555"
+            };
+
+            var doctor6 = new Doctor()
+            {
+                DoctorId = 6,
+                UserId = user8.UserId,
+                SpecialtyId = specialty2.SpecialtyId,
+                LicenseNumber = "6666"
+            };
+
+            var doctor7 = new Doctor()
+            {
+                DoctorId = 7,
+                UserId = user9.UserId,
+                SpecialtyId = specialty3.SpecialtyId,
+                LicenseNumber = "7777"
+            };
+
+            modelBuilder.Entity<Doctor>().HasData(doctor1, doctor2, doctor3, doctor4, doctor5, doctor6, doctor7);
 
 
             var patient1 = new Patient()
             {
                 PatientId = 1,
-                Policy = "12321",
+                Policy = "123216",
                 UserId = user4.UserId
             };
 
@@ -133,8 +235,29 @@ namespace Polyclinic.DAL.Implementation.EF
                 UserId = user5.UserId
             };
 
+            var patient3 = new Patient()
+            {
+                PatientId = 3,
+                Policy = "091234",
+                UserId = user10.UserId
+            };
 
-            modelBuilder.Entity<Patient>().HasData(patient1, patient2);
+            var patient4 = new Patient()
+            {
+                PatientId = 4,
+                Policy = "561209",
+                UserId = user11.UserId
+            };
+
+            var patient5 = new Patient()
+            {
+                PatientId = 5,
+                Policy = "048130",
+                UserId = user12.UserId
+            };
+
+
+            modelBuilder.Entity<Patient>().HasData(patient1, patient2, patient3, patient4, patient5);
 
 
             var visit1 = new Visit()
@@ -142,7 +265,7 @@ namespace Polyclinic.DAL.Implementation.EF
                 VisitId = 1,
                 PatientId = patient1.PatientId,
                 DoctorId = doctor1.DoctorId,
-                DateVisit = new DateTime(2021, 02, 02),
+                DateVisit = new DateTime(2021, 06, 20, 10, 00, 00),
                 Price = 1300
             };
 
@@ -151,8 +274,8 @@ namespace Polyclinic.DAL.Implementation.EF
                 VisitId = 2,
                 PatientId = patient1.PatientId,
                 DoctorId = doctor2.DoctorId,
-                DateVisit = new DateTime(2021, 01, 20),
-                Complaint = "Too expensive",
+                DateVisit = new DateTime(2021, 07, 20, 15, 00, 00),
+                Complaint = "Have a headache",
                 Price = 1000
             };
 
@@ -161,12 +284,206 @@ namespace Polyclinic.DAL.Implementation.EF
                 VisitId = 3,
                 PatientId = patient2.PatientId,
                 DoctorId = doctor1.DoctorId,
-                DateVisit = new DateTime(2021, 03, 25),
+                DateVisit = new DateTime(2021, 06, 25, 15, 00, 00),
+                Price = 1200
+            };
+
+            var visit4 = new Visit()
+            {
+                VisitId = 4,
+                PatientId = patient4.PatientId,
+                DoctorId = doctor1.DoctorId,
+                DateVisit = new DateTime(2021, 06, 25, 15, 30, 00),
+                Price = 1200
+            };
+
+            var visit5 = new Visit()
+            {
+                VisitId = 5,
+                PatientId = patient5.PatientId,
+                DoctorId = doctor5.DoctorId,
+                DateVisit = new DateTime(2021, 06, 26, 11, 00, 00),
+                Price = 1200
+            };
+
+            var visit6 = new Visit()
+            {
+                VisitId = 6,
+                PatientId = patient4.PatientId,
+                DoctorId = doctor5.DoctorId,
+                DateVisit = new DateTime(2021, 06, 26, 11, 45, 00),
+                Price = 1200
+            };
+
+            var visit7 = new Visit()
+            {
+                VisitId = 7,
+                PatientId = patient3.PatientId,
+                DoctorId = doctor4.DoctorId,
+                DateVisit = new DateTime(2021, 06, 26, 12, 00, 00),
                 Price = 1200
             };
 
 
-            modelBuilder.Entity<Visit>().HasData(visit1, visit2, visit3);
+            var visit8 = new Visit()
+            {
+                VisitId = 8,
+                PatientId = patient1.PatientId,
+                DoctorId = doctor1.DoctorId,
+                DateVisit = new DateTime(2021, 05, 10, 10, 00, 00),
+                Price = 1300
+            };
+
+            var visit9 = new Visit()
+            {
+                VisitId = 9,
+                PatientId = patient3.PatientId,
+                DoctorId = doctor2.DoctorId,
+                DateVisit = new DateTime(2021, 05, 10, 15, 00, 00),
+                Complaint = "Have a headache",
+                Price = 1000
+            };
+
+            var visit10 = new Visit()
+            {
+                VisitId = 10,
+                PatientId = patient2.PatientId,
+                DoctorId = doctor1.DoctorId,
+                DateVisit = new DateTime(2021, 05, 15, 15, 00, 00),
+                Price = 1200
+            };
+
+            var visit11 = new Visit()
+            {
+                VisitId = 11,
+                PatientId = patient4.PatientId,
+                DoctorId = doctor1.DoctorId,
+                DateVisit = new DateTime(2021, 05, 05, 15, 30, 00),
+                Price = 1200
+            };
+
+            var visit12 = new Visit()
+            {
+                VisitId = 12,
+                PatientId = patient5.PatientId,
+                DoctorId = doctor5.DoctorId,
+                DateVisit = new DateTime(2021, 05, 16, 11, 00, 00),
+                Price = 1200
+            };
+
+            var visit13 = new Visit()
+            {
+                VisitId = 13,
+                PatientId = patient4.PatientId,
+                DoctorId = doctor5.DoctorId,
+                DateVisit = new DateTime(2021, 05, 06, 11, 45, 00),
+                Price = 1200
+            };
+
+            var visit14 = new Visit()
+            {
+                VisitId = 14,
+                PatientId = patient3.PatientId,
+                DoctorId = doctor4.DoctorId,
+                DateVisit = new DateTime(2021, 05, 30, 12, 00, 00),
+                Price = 1200
+            };
+
+            var visit15 = new Visit()
+            {
+                VisitId = 15,
+                PatientId = patient1.PatientId,
+                DoctorId = doctor1.DoctorId,
+                DateVisit = new DateTime(2021, 05, 10, 10, 00, 00),
+                Price = 1300
+            };
+
+            var visit16 = new Visit()
+            {
+                VisitId = 16,
+                PatientId = patient3.PatientId,
+                DoctorId = doctor2.DoctorId,
+                DateVisit = new DateTime(2021, 05, 10, 15, 00, 00),
+                Complaint = "Have a headache",
+                Price = 1000
+            };
+
+            var visit17 = new Visit()
+            {
+                VisitId = 17,
+                PatientId = patient2.PatientId,
+                DoctorId = doctor1.DoctorId,
+                DateVisit = new DateTime(2021, 05, 15, 15, 00, 00),
+                Price = 1200
+            };
+
+            var visit18 = new Visit()
+            {
+                VisitId = 18,
+                PatientId = patient4.PatientId,
+                DoctorId = doctor1.DoctorId,
+                DateVisit = new DateTime(2021, 05, 05, 15, 30, 00),
+                Price = 1200
+            };
+
+            var visit19 = new Visit()
+            {
+                VisitId = 19,
+                PatientId = patient5.PatientId,
+                DoctorId = doctor5.DoctorId,
+                DateVisit = new DateTime(2021, 05, 16, 11, 00, 00),
+                Price = 1200
+            };
+
+            var visit20 = new Visit()
+            {
+                VisitId = 20,
+                PatientId = patient4.PatientId,
+                DoctorId = doctor5.DoctorId,
+                DateVisit = new DateTime(2021, 05, 06, 11, 45, 00),
+                Price = 1200
+            };
+
+            var visit21 = new Visit()
+            {
+                VisitId = 21,
+                PatientId = patient3.PatientId,
+                DoctorId = doctor7.DoctorId,
+                DateVisit = new DateTime(2021, 05, 30, 12, 00, 00),
+                Price = 1200
+            };
+
+
+            var visit22 = new Visit()
+            {
+                VisitId = 22,
+                PatientId = patient1.PatientId,
+                DoctorId = doctor6.DoctorId,
+                DateVisit = new DateTime(2021, 07, 25, 11, 00, 00),
+                Price = 1200
+            };
+
+            var visit23 = new Visit()
+            {
+                VisitId = 23,
+                PatientId = patient4.PatientId,
+                DoctorId = doctor7.DoctorId,
+                DateVisit = new DateTime(2021, 07, 26, 11, 45, 00),
+                Price = 1200
+            };
+
+            var visit24 = new Visit()
+            {
+                VisitId = 24,
+                PatientId = patient2.PatientId,
+                DoctorId = doctor7.DoctorId,
+                DateVisit = new DateTime(2021, 07, 27, 12, 00, 00),
+                Price = 1200
+            };
+
+            modelBuilder.Entity<Visit>().HasData(visit1, visit2, visit3, visit4, visit5, visit6, visit7, visit8, visit9, visit10,
+                                                visit11, visit12, visit13, visit14, visit15, visit16, visit17, visit18, visit19, visit20,
+                                                visit21, visit22, visit23, visit24);
 
 
             var diagnosis1 = new Diagnosis()
@@ -236,8 +553,7 @@ namespace Polyclinic.DAL.Implementation.EF
                 CabinetInfoId = 1,
                 CabinetId = cabinet1.CabinetId,
                 DoctorId = doctor1.DoctorId,
-                DateStart = new DateTime(2019, 3, 23)/*,
-                DateEnd = default*/
+                DateStart = new DateTime(2019, 3, 23)
             };
 
 
@@ -255,8 +571,7 @@ namespace Polyclinic.DAL.Implementation.EF
                 CabinetInfoId = 3,
                 CabinetId = cabinet3.CabinetId,
                 DoctorId = doctor2.DoctorId,
-                DateStart = new DateTime(2018, 3, 21)/*,
-                DateEnd = default*/
+                DateStart = new DateTime(2018, 3, 21)
             };
 
             var cabinetInfo4 = new CabinetInfo()

@@ -21,7 +21,6 @@ namespace Polyclinic.Web.Models
 
         public DoctorViewModel Doctor { get; set; }
 
-        [DataType(DataType.Date)]
         public DateTime DateVisit { get; set; }
 
         public string Complaint { get; set; }
